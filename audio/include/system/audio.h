@@ -704,7 +704,11 @@ typedef enum {
 enum {
     AUDIO_DEVICE_NONE                          = 0x0,
     /* reserved bits */
+#if defined(ICS_AUDIO_BLOB) || defined(MR0_AUDIO_BLOB)
+    AUDIO_DEVICE_BIT_IN                        = 0x10000,
+#else
     AUDIO_DEVICE_BIT_IN                        = 0x80000000,
+#endif
     AUDIO_DEVICE_BIT_DEFAULT                   = 0x40000000,
     /* output devices */
     AUDIO_DEVICE_OUT_EARPIECE                  = 0x1,
@@ -847,6 +851,7 @@ enum {
     AUDIO_DEVICE_IN_BUS                   = AUDIO_DEVICE_BIT_IN | 0x100000,
     AUDIO_DEVICE_IN_PROXY                 = AUDIO_DEVICE_BIT_IN | 0x1000000,
     AUDIO_DEVICE_IN_DEFAULT               = AUDIO_DEVICE_BIT_IN | AUDIO_DEVICE_BIT_DEFAULT,
+#endif
 
     AUDIO_DEVICE_IN_ALL     = (AUDIO_DEVICE_IN_COMMUNICATION |
                                AUDIO_DEVICE_IN_AMBIENT |
