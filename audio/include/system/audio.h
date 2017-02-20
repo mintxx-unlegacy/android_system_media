@@ -316,8 +316,6 @@ typedef enum {
     AUDIO_FORMAT_DTS_HD              = 0x0C000000UL,
     // IEC61937 is encoded audio wrapped in 16-bit PCM.
     AUDIO_FORMAT_IEC61937            = 0x0D000000UL,
-    AUDIO_FORMAT_DOLBY_TRUEHD        = 0x0E000000UL,
-
     AUDIO_FORMAT_EVRC                = 0x10000000UL,
     AUDIO_FORMAT_QCELP               = 0x11000000UL,
     AUDIO_FORMAT_WMA                 = 0x12000000UL,
@@ -337,7 +335,7 @@ typedef enum {
     AUDIO_FORMAT_SBC                 = 0x20000000UL,
     AUDIO_FORMAT_APTX                = 0x21000000UL,
     AUDIO_FORMAT_APTX_HD             = 0x22000000UL,
-
+    AUDIO_FORMAT_DOLBY_TRUEHD        = 0x0E000000UL,
     AUDIO_FORMAT_MAIN_MASK           = 0xFF000000UL, /* Deprecated. Use audio_get_main_format() */
     AUDIO_FORMAT_SUB_MASK            = 0x00FFFFFFUL,
 
@@ -1607,7 +1605,6 @@ static inline bool audio_is_valid_format(audio_format_t format)
     case AUDIO_FORMAT_DTS:
     case AUDIO_FORMAT_DTS_HD:
     case AUDIO_FORMAT_IEC61937:
-    case AUDIO_FORMAT_DOLBY_TRUEHD:
     case AUDIO_FORMAT_QCELP:
     case AUDIO_FORMAT_EVRC:
     case AUDIO_FORMAT_EVRCB:
@@ -1628,6 +1625,7 @@ static inline bool audio_is_valid_format(audio_format_t format)
                 format != AUDIO_FORMAT_PCM_24_BIT_OFFLOAD) {
             return false;
         }
+    case AUDIO_FORMAT_DOLBY_TRUEHD:
         return true;
     default:
         return false;
